@@ -3,6 +3,7 @@ import './App.css'
 import { useEffect } from 'react';
 import axios from 'axios';
 import WeatherCards from './components/WeatherCards';
+import SearchBar from './components/SearchBar';
 
 function App() {
 
@@ -10,7 +11,14 @@ function App() {
   const [weather, setWeather] = useState();
   const [temp, setTemp] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  
+  const [errorInfo, setErrorInfo] = useState();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, [])
 
   const success = (pos) => {
     console.log(pos);
@@ -41,7 +49,7 @@ function App() {
         
         .catch(err => console.log(err))
         .finally(() => {
-          setIsLoading(false);
+          // setIsLoading(false);
         })
     }
   }, [coords]);
@@ -52,13 +60,29 @@ function App() {
     <div className='container'>
       {
         isLoading ?
-          <h2>Loading...</h2>
+          <img src='/assets/loadingimg.gif' alt="load" />
         :
-          <WeatherCards
-            weather={weather}
-            temp={temp}
-          />
-    }
+        errorInfo ?
+        <div>
+        <h2 className='error__info'>{errorInfo}</h2>
+        <SearchBar 
+          setWeather={setWeather}
+          setErrorInfo={setErrorInfo}
+        />
+        </div>
+        :
+
+        <div>
+        <WeatherCards
+        weather={weather}
+        temp={temp}
+        />
+        <SearchBar 
+          setWeather={setWeather}
+          setErrorInfo={setErrorInfo}
+        />
+        </div>
+      }
     </div>
   )
 }

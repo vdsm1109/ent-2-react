@@ -31,3 +31,16 @@
     grid-template-columns: 5fr 4fr;
     gap: 10px;
 }
+
+.Btn {
+    border-radius: 10px;
+    border: none;
+    padding: 5px 10px;
+    background-color: rgba(127, 255, 212, 0.596);
+  }
+
+  .Btn:hover {
+    background-color: white;
+    transform: scale(1.1);
+    transition: transform .5s;
+  }

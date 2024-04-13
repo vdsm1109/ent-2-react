@@ -1,0 +1,16 @@
+.input__search {
+    width: 60%;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+  }
+  .Btn__search {
+    border-radius: 10px;
+    border: none;
+    padding: 3px 5px;
+    background-color: rgba(127, 255, 212, 0.596);
+  }
+  .Btn__search:hover {
+    background-color: white;
+    transform: scale(1.1);
+    transition: transform .5s;
+  }
